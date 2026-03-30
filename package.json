@@ -1,0 +1,24 @@
+{
+  "name": "lumina-edtech",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter @lumina/web dev",
+    "dev:app": "pnpm --filter @lumina/app dev",
+    "dev": "pnpm --filter @lumina/web dev & pnpm --filter @lumina/app dev",
+    "build:web": "pnpm --filter @lumina/web build",
+    "build:app": "pnpm --filter @lumina/app build",
+    "build": "pnpm run --parallel build:web build:app",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+@import "@lumina/ui/globals.css";
+
+/* Marketing-specific utilities */
+@layer components {
+  .section-divider {
+    @apply w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent;
+  }
+}
