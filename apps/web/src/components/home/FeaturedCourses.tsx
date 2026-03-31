@@ -1,4 +1,4 @@
-import { Badge, Button } from "@lumina/ui";
+import { Badge, Button, courses, AIUB_COURSE_COUNT } from "@lumina/ui";
 import {
   GitPullRequest,
   TreeStructure,
@@ -13,25 +13,15 @@ import { SpotlightCard } from "~/components/shared/SpotlightCard";
 import { AnimateOnScroll } from "~/components/shared/AnimateOnScroll";
 
 const topCourses = [
-  {
-    title: "Full-Stack Web Dev",
-    duration: "42 hrs",
-    students: "7,340",
-    rating: 4.82,
-  },
-  {
-    title: "Applied ML",
-    duration: "56 hrs",
-    students: "3,215",
-    rating: 4.91,
-  },
-  {
-    title: "Data Science with Python",
-    duration: "38 hrs",
-    students: "2,780",
-    rating: 4.68,
-  },
-];
+  courses.find(c => c.slug === "introduction-to-programming-language")!,
+  courses.find(c => c.slug === "algorithms")!,
+  courses.find(c => c.slug === "artificial-intelligence-and-expert-system")!,
+].map(c => ({
+  title: c.name,
+  duration: c.duration,
+  students: c.students.replace(" enrolled", ""),
+  rating: c.rating,
+}));
 
 export function FeaturedCourses() {
   return (
@@ -202,7 +192,7 @@ export function FeaturedCourses() {
                       size="sm"
                       className="group text-zinc-400 hover:text-white active:scale-[0.97] transition-all duration-150"
                     >
-                      View all 217
+                      View all {AIUB_COURSE_COUNT}
                       <ArrowRight
                         size={14}
                         className="transition-transform duration-150 group-hover:translate-x-1"

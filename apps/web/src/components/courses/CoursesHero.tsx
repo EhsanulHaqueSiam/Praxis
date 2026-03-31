@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Tabs } from "@lumina/ui";
+import { AIUB_COURSE_COUNT } from "@lumina/ui";
 import { DarkSection } from "~/components/shared/DarkSection";
 
 const categories = [
   "All",
-  "Web Development",
-  "Design",
-  "ML & AI",
-  "Data Science",
-  "DevOps",
+  "Computer Science Fundamentals",
+  "Software Engineering",
+  "Web & Mobile Development",
+  "AI & Data Science",
+  "Systems & Networking",
 ];
 
 export function CoursesHero() {
@@ -23,7 +24,7 @@ export function CoursesHero() {
           <span className="bg-gradient-to-r from-accent-400 to-emerald-300 bg-clip-text text-transparent">to ship.</span>
         </h1>
         <p className="text-base md:text-lg text-zinc-400 leading-relaxed max-w-[56ch] mb-10">
-          217 project-based courses across five disciplines. Each one ends with a
+          {`${AIUB_COURSE_COUNT} project-based AIUB CSE courses across five disciplines`}. Each one ends with a
           deployed artifact, a code review, and proof you can build.
         </p>
         <Tabs
