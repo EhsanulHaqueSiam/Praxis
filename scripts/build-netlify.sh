@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "==> Installing dependencies..."
+pnpm install --frozen-lockfile
+
 echo "==> Building dashboard app (SPA)..."
 pnpm --filter @lumina/app build
 
@@ -9,46 +12,44 @@ pnpm --filter @lumina/web build
 
 echo "==> Combining outputs for Netlify..."
 
-# Create the publish directory structure
 PUBLISH_DIR="dist-netlify"
 rm -rf "$PUBLISH_DIR"
 mkdir -p "$PUBLISH_DIR"
-mkdir -p "$PUBLISH_DIR/netlify/functions"
 
-# Copy web client assets (static files served by CDN)
+# 1. Copy marketing site client assets
 cp -r apps/web/dist/client/* "$PUBLISH_DIR/"
 
-# Copy app SPA into /app/ subfolder
+# 2. Copy dashboard SPA into /app/ subfolder
 mkdir -p "$PUBLISH_DIR/app"
 cp -r apps/app/dist/* "$PUBLISH_DIR/app/"
 
-# Create Netlify Function for SSR
-cat > "$PUBLISH_DIR/netlify/functions/ssr.mjs" << 'FUNC'
-import { createServerEntry } from "../../_server/server.js";
+# 3. Copy SSR server bundle for edge function
+mkdir -p "$PUBLISH_DIR/_ssr-server"
+cp -r apps/web/dist/server/* "$PUBLISH_DIR/_ssr-server/"
 
-const entry = createServerEntry();
+# 4. Create Netlify Edge Function for SSR
+mkdir -p "netlify/edge-functions"
+cat > "netlify/edge-functions/ssr.js" << 'EDGEFUNC'
+import server from "../../dist-netlify/_ssr-server/server.js";
 
 export default async function handler(request, context) {
   try {
-    const response = await entry.handler(request);
+    const response = await server.fetch(request);
     return response;
   } catch (e) {
-    console.error("SSR error:", e);
+    console.error("SSR Error:", e);
     return new Response("Internal Server Error", { status: 500 });
   }
 }
 
 export const config = {
   path: "/*",
-  excludedPath: ["/app/*", "/assets/*", "/_server/*"],
+  excludedPath: ["/app/*", "/assets/*", "/_ssr-server/*"],
 };
-FUNC
+EDGEFUNC
 
-# Copy server bundle for the function to use
-mkdir -p "$PUBLISH_DIR/_server"
-cp -r apps/web/dist/server/* "$PUBLISH_DIR/_server/"
-
-echo "==> Build complete! Output in $PUBLISH_DIR/"
-echo "    - Static assets: $PUBLISH_DIR/"
-echo "    - Dashboard app: $PUBLISH_DIR/app/"
-echo "    - SSR function:  $PUBLISH_DIR/netlify/functions/ssr.mjs"
+echo "==> Build complete!"
+echo "    Static assets:  $PUBLISH_DIR/assets/"
+echo "    Dashboard app:  $PUBLISH_DIR/app/"
+echo "    SSR server:     $PUBLISH_DIR/_ssr-server/"
+echo "    Edge function:  netlify/edge-functions/ssr.js"

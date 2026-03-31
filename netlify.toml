@@ -8,7 +8,7 @@
   VITE_APP_BASEPATH = "/app"
   VITE_MARKETING_TARGET = "/"
 
-# Dashboard SPA — serve static files, fallback to index.html
+# Dashboard SPA — serve static assets first, then fallback to index.html
 [[redirects]]
   from = "/app/assets/*"
   to = "/app/assets/:splat"
@@ -19,19 +19,19 @@
   to = "/app/index.html"
   status = 200
 
-# Marketing site static assets (CSS, JS, images)
+# Marketing site static assets
 [[redirects]]
   from = "/assets/*"
   to = "/assets/:splat"
   status = 200
 
-# Marketing site SSR — everything else goes to the serverless function
+# Don't send SSR server files to edge function
 [[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/ssr"
+  from = "/_ssr-server/*"
+  to = "/_ssr-server/:splat"
   status = 200
 
-# Cache immutable assets aggressively
+# Cache immutable hashed assets
 [[headers]]
   for = "/assets/*"
   [headers.values]
