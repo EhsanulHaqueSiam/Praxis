@@ -5,19 +5,17 @@ interface AnimateOnScrollProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  as?: "div" | "section" | "li";
 }
 
 export function AnimateOnScroll({
   children,
   className = "",
   delay = 0,
-  as: Tag = "div",
 }: AnimateOnScrollProps) {
   const { ref, isInView } = useInView(0.1);
 
   return (
-    <Tag
+    <div
       ref={ref}
       className={className}
       style={{
@@ -27,6 +25,6 @@ export function AnimateOnScroll({
       }}
     >
       {children}
-    </Tag>
+    </div>
   );
 }

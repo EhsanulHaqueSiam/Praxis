@@ -4,6 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  VITE_APP_TARGET = "/app"
+  VITE_APP_BASEPATH = "/app"
+  VITE_MARKETING_TARGET = "/"
 
 # Dashboard SPA — serve static files, fallback to index.html
 [[redirects]]

@@ -3,6 +3,7 @@ import { Button, Avatar, useAuth } from "@lumina/ui";
 import { GraduationCap, SquaresFour } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useScrollProgress } from "~/hooks/useScrollProgress";
+import { appHref } from "~/lib/urls";
 
 const navLinks = [
   { label: "Courses", href: "/courses" },
@@ -67,7 +68,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-3">
             {isLoggedIn ? (
               <>
-                <a href="/app/dashboard">
+                <a href={appHref("/dashboard")}>
                   <Button
                     size="sm"
                     className="btn-shimmer active:scale-[0.97] transition-transform"
@@ -91,7 +92,7 @@ export function Header() {
               </>
             ) : (
               <>
-                <a href="/app/login">
+                <a href={appHref("/login")}>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -100,7 +101,7 @@ export function Header() {
                     Sign In
                   </Button>
                 </a>
-                <a href="/app/register">
+                <a href={appHref("/register")}>
                   <Button
                     size="sm"
                     className="btn-shimmer active:scale-[0.97] transition-transform"
@@ -143,7 +144,7 @@ export function Header() {
               <div className="h-px bg-zinc-800 my-2" />
               {isLoggedIn ? (
                 <>
-                  <a href="/app/dashboard" className="block">
+                  <a href={appHref("/dashboard")} className="block">
                     <Button size="sm" className="w-full justify-center">
                       <SquaresFour size={14} weight="duotone" />
                       Dashboard
@@ -158,7 +159,7 @@ export function Header() {
                 </>
               ) : (
                 <>
-                  <a href="/app/login" className="block">
+                  <a href={appHref("/login")} className="block">
                     <Button
                       variant="ghost"
                       size="sm"
@@ -167,7 +168,7 @@ export function Header() {
                       Sign In
                     </Button>
                   </a>
-                  <a href="/app/register" className="block">
+                  <a href={appHref("/register")} className="block">
                     <Button size="sm" className="w-full justify-center">
                       Start Building
                     </Button>

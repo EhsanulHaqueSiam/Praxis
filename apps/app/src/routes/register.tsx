@@ -10,6 +10,7 @@ import {
   CheckCircle,
 } from "@phosphor-icons/react";
 import { useState } from "react";
+import { marketingHref } from "../lib/urls";
 
 export const Route = createFileRoute("/register")({
   component: RegisterPage,
@@ -68,12 +69,12 @@ function RegisterPage() {
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <a href={marketingHref("/")} className="flex items-center gap-2">
             <GraduationCap className="h-8 w-8 text-white" weight="duotone" />
             <span className="font-display text-xl font-bold text-white">
               Praxis
             </span>
-          </div>
+          </a>
 
           {/* Hero */}
           <div className="max-w-md">
@@ -121,7 +122,7 @@ function RegisterPage() {
       <div className="flex-1 flex items-center justify-center p-6 sm:p-12 bg-zinc-950">
         <div className="w-full max-w-sm">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-2 mb-10">
+          <a href={marketingHref("/")} className="lg:hidden flex items-center gap-2 mb-10">
             <GraduationCap
               className="h-7 w-7 text-accent-500"
               weight="duotone"
@@ -129,7 +130,7 @@ function RegisterPage() {
             <span className="font-display text-lg font-bold text-white">
               Praxis
             </span>
-          </div>
+          </a>
 
           <h2 className="font-display text-2xl font-bold text-white mb-2">
             Create your account

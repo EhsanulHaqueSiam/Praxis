@@ -2,6 +2,7 @@ import { Button, Badge } from "@lumina/ui";
 import { CheckCircle, Minus } from "@phosphor-icons/react";
 import { TiltCard } from "~/components/shared/TiltCard";
 import { AnimateOnScroll } from "~/components/shared/AnimateOnScroll";
+import { appHref } from "~/lib/urls";
 
 const freeFeatures = [
   { label: "3 courses per month", included: true },
@@ -69,7 +70,7 @@ export function PricingCards() {
                 </li>
               ))}
             </ul>
-            <a href="/app/register">
+            <a href={appHref("/register")}>
               <Button
                 variant="outline"
                 className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 active:scale-[0.97] transition-all duration-150"
@@ -114,7 +115,7 @@ export function PricingCards() {
                 </li>
               ))}
             </ul>
-            <a href="/app/register?plan=pro">
+            <a href={appHref("/register?plan=pro")}>
               <Button className="w-full btn-shimmer bg-white text-zinc-900 hover:bg-zinc-200 active:scale-[0.97] transition-all duration-150">
                 Start building
               </Button>

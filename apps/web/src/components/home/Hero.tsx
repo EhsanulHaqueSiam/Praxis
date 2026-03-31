@@ -3,6 +3,7 @@ import { ArrowRight, Play, User, TrendUp } from "@phosphor-icons/react";
 import { MagneticButton } from "~/components/shared/MagneticButton";
 import { ScrollCue } from "~/components/shared/ScrollCue";
 import { CircleProgress } from "~/components/shared/CircleProgress";
+import { appHref } from "~/lib/urls";
 
 const particles = [
   { size: 3, left: "10%", top: "20%", duration: "9s", delay: "0s", dx: "40px", dy: "-30px", dx2: "-20px", dy2: "25px", dx3: "15px", dy3: "-40px" },
@@ -74,7 +75,7 @@ export function Hero() {
 
             <div className="opacity-0 animate-fade-up stagger-3 flex flex-wrap gap-4 mb-12">
               <MagneticButton strength={0.15}>
-                <a href="/app/register">
+                <a href={appHref("/register")}>
                   <Button
                     size="xl"
                     className="btn-shimmer bg-white text-zinc-900 hover:bg-zinc-200 group active:scale-[0.97] transition-all duration-150"

@@ -1,6 +1,7 @@
 import { Button } from "@lumina/ui";
 import { ArrowRight } from "@phosphor-icons/react";
 import { AnimateOnScroll } from "~/components/shared/AnimateOnScroll";
+import { appHref } from "~/lib/urls";
 
 export function CTA() {
   return (
@@ -33,7 +34,7 @@ export function CTA() {
             11,480+ engineers building real software.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="/app/register">
+            <a href={appHref("/register")}>
               <Button
                 size="xl"
                 className="btn-shimmer bg-white text-zinc-900 hover:bg-zinc-200 group active:scale-[0.97] transition-all duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]"

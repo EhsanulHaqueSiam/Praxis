@@ -7,6 +7,7 @@ import {
   GithubLogo,
 } from "@phosphor-icons/react";
 import { Button } from "@lumina/ui";
+import { appHref } from "~/lib/urls";
 
 const footerLinks = {
   Platform: [
@@ -14,7 +15,7 @@ const footerLinks = {
     { label: "Learning Paths", href: "/paths" },
     { label: "Community", href: "/community" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Dashboard", href: "/app/dashboard" },
+    { label: "Dashboard", href: appHref("/dashboard") },
   ],
   Resources: [
     { label: "Home", href: "/" },
@@ -24,9 +25,9 @@ const footerLinks = {
     { label: "Pricing", href: "/pricing" },
   ],
   Company: [
-    { label: "Start Free", href: "/app/register" },
-    { label: "Sign In", href: "/app/login" },
-    { label: "Student Dashboard", href: "/app/dashboard" },
+    { label: "Start Free", href: appHref("/register") },
+    { label: "Sign In", href: appHref("/login") },
+    { label: "Student Dashboard", href: appHref("/dashboard") },
     { label: "Community", href: "/community" },
     { label: "Contact", href: "/pricing" },
   ],

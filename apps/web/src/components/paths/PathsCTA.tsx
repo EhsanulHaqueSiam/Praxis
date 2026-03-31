@@ -1,6 +1,7 @@
 import { Button } from "@lumina/ui";
 import { ArrowRight } from "@phosphor-icons/react";
 import { DarkSection } from "~/components/shared/DarkSection";
+import { appHref } from "~/lib/urls";
 
 export function PathsCTA() {
   return (
@@ -18,7 +19,7 @@ export function PathsCTA() {
           to start any learning path.
         </p>
         <div className="flex flex-wrap gap-4">
-          <a href="/app/register">
+          <a href={appHref("/register")}>
             <Button
               size="xl"
               className="bg-white text-zinc-900 hover:bg-zinc-100 group active:scale-[0.97] transition-transform"

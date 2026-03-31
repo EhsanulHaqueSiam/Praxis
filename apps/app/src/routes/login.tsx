@@ -9,16 +9,19 @@ import {
   GoogleLogo,
 } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { appHref, marketingHref } from "../lib/urls";
 
 export const Route = createFileRoute("/login")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    redirect:
+  validateSearch: (search: Record<string, unknown>): { redirect?: string } => {
+    const redirect =
       typeof search.redirect === "string" &&
       search.redirect.startsWith("/") &&
       !search.redirect.startsWith("//")
         ? search.redirect
-        : undefined,
-  }),
+        : undefined;
+
+    return redirect ? { redirect } : {};
+  },
   component: LoginPage,
 });
 
@@ -44,7 +47,7 @@ function LoginPage() {
       return;
     }
 
-    window.location.href = `/app${redirectPath}`;
+    window.location.href = appHref(redirectPath);
   }, [isLoggedIn, isDashboardRedirect, navigate, redirectPath]);
 
   if (isLoggedIn) return null;
@@ -56,7 +59,7 @@ function LoginPage() {
     if (isDashboardRedirect) {
       navigate({ to: "/dashboard" });
     } else {
-      window.location.href = `/app${redirectPath}`;
+      window.location.href = appHref(redirectPath);
     }
   }
 
@@ -68,7 +71,7 @@ function LoginPage() {
       return;
     }
 
-    window.location.href = `/app${redirectPath}`;
+    window.location.href = appHref(redirectPath);
   }
 
   return (
@@ -95,7 +98,7 @@ function LoginPage() {
         />
 
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
-          <a href="/" className="flex items-center gap-2">
+          <a href={marketingHref("/")} className="flex items-center gap-2">
             <GraduationCap className="h-8 w-8 text-white" weight="duotone" />
             <span className="font-display text-xl font-bold text-white">
               Praxis
@@ -156,7 +159,7 @@ function LoginPage() {
       <div className="flex-1 flex items-center justify-center p-6 sm:p-12 bg-zinc-950">
         <div className="w-full max-w-sm">
           <div className="lg:hidden flex items-center gap-2 mb-10">
-            <a href="/" className="flex items-center gap-2">
+            <a href={marketingHref("/")} className="flex items-center gap-2">
               <GraduationCap className="h-7 w-7 text-accent-500" weight="duotone" />
               <span className="font-display text-lg font-bold text-white">
                 Praxis

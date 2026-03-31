@@ -20,6 +20,7 @@ import {
 } from "@phosphor-icons/react";
 import { Avatar, useAuth } from "@lumina/ui";
 import { useEffect } from "react";
+import { marketingHref } from "../lib/urls";
 
 export const Route = createFileRoute("/_authenticated")({
   component: AuthenticatedLayout,
@@ -59,7 +60,7 @@ function AuthenticatedLayout() {
         {/* Logo — links back to marketing site */}
         <div className="p-6">
           <a
-            href="/"
+            href={marketingHref("/")}
             className="flex items-center gap-2 group"
           >
             <GraduationCap
@@ -97,7 +98,7 @@ function AuthenticatedLayout() {
 
           {/* Browse courses — links to marketing site */}
           <a
-            href="/courses"
+            href={marketingHref("/courses")}
             className="text-zinc-600 hover:text-zinc-400 hover:bg-white/[0.04] rounded-lg px-3 py-2 flex items-center gap-3 text-sm transition-all duration-150 mt-4 border-t border-white/[0.04] pt-4"
           >
             <ArrowSquareOut className="h-5 w-5 shrink-0" weight="duotone" />
@@ -125,7 +126,7 @@ function AuthenticatedLayout() {
             <button
               onClick={() => {
                 logout();
-                window.location.href = "/";
+                window.location.href = marketingHref("/");
               }}
               className="text-zinc-600 hover:text-zinc-400 transition-colors duration-150"
               title="Sign out"
