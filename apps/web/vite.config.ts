@@ -24,6 +24,11 @@ export default defineConfig(({ mode }) => {
           }
         : undefined,
     },
+    ssr: {
+      // Bundle all dependencies into the SSR server output so the Netlify
+      // serverless function is fully self-contained (no node_modules needed).
+      noExternal: true,
+    },
     plugins: [
       TanStackRouterVite({
         target: "react",
