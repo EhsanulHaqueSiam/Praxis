@@ -25,12 +25,6 @@
   to = "/assets/:splat"
   status = 200
 
-# Don't send SSR server files to edge function
-[[redirects]]
-  from = "/_ssr-server/*"
-  to = "/_ssr-server/:splat"
-  status = 200
-
 # Cache immutable hashed assets
 [[headers]]
   for = "/assets/*"

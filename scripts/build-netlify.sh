@@ -23,19 +23,16 @@ cp -r apps/web/dist/client/* "$PUBLISH_DIR/"
 mkdir -p "$PUBLISH_DIR/app"
 cp -r apps/app/dist/* "$PUBLISH_DIR/app/"
 
-# 3. Copy SSR server bundle for edge function
-mkdir -p "$PUBLISH_DIR/_ssr-server"
-cp -r apps/web/dist/server/* "$PUBLISH_DIR/_ssr-server/"
+# 3. Create Netlify Serverless Function for SSR (Node.js runtime)
+mkdir -p "netlify/functions/_ssr-server"
+cp -r apps/web/dist/server/* "netlify/functions/_ssr-server/"
 
-# 4. Create Netlify Edge Function for SSR
-mkdir -p "netlify/edge-functions"
-cat > "netlify/edge-functions/ssr.js" << 'EDGEFUNC'
-import server from "../../dist-netlify/_ssr-server/server.js";
+cat > "netlify/functions/ssr.mjs" << 'SSRFUNC'
+import server from "./_ssr-server/server.js";
 
-export default async function handler(request, context) {
+export default async function handler(request) {
   try {
-    const response = await server.fetch(request);
-    return response;
+    return await server.fetch(request);
   } catch (e) {
     console.error("SSR Error:", e);
     return new Response("Internal Server Error", { status: 500 });
@@ -44,12 +41,12 @@ export default async function handler(request, context) {
 
 export const config = {
   path: "/*",
-  excludedPath: ["/app/*", "/assets/*", "/_ssr-server/*"],
+  excludedPath: ["/app/*", "/assets/*"],
+  preferStatic: true,
 };
-EDGEFUNC
+SSRFUNC
 
 echo "==> Build complete!"
 echo "    Static assets:  $PUBLISH_DIR/assets/"
 echo "    Dashboard app:  $PUBLISH_DIR/app/"
-echo "    SSR server:     $PUBLISH_DIR/_ssr-server/"
-echo "    Edge function:  netlify/edge-functions/ssr.js"
+echo "    SSR function:   netlify/functions/ssr.mjs"
