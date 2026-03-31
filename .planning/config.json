@@ -18,5 +18,8 @@
     "ssrContentWithoutJs": true,
     "seamlessDualSite": true,
     "linearAesthetic": true
+  },
+  "workflow": {
+    "_auto_chain_active": false
   }
 }
