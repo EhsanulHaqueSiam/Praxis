@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AIUB_COURSE_COUNT } from "@lumina/ui";
 import { Hero } from "~/components/home/Hero";
 import { Marquee } from "~/components/home/Marquee";
 import { TrustedBy } from "~/components/home/TrustedBy";
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Ship production code in your first month. 217 project-based courses in web dev, ML, data science, and design. Trusted by 11,480+ engineers.",
+          `Ship production code in your first month. ${AIUB_COURSE_COUNT} project-based AIUB CSE courses across fundamentals, software engineering, and more. Trusted by 11,480+ engineers.`,
       },
     ],
   }),

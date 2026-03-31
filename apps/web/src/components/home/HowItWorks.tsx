@@ -1,4 +1,4 @@
-import { Badge } from "@lumina/ui";
+import { Badge, AIUB_COURSE_COUNT } from "@lumina/ui";
 import {
   MagnifyingGlass,
   CodeBlock,
@@ -13,7 +13,7 @@ const steps = [
     icon: MagnifyingGlass,
     title: "Pick a project that matters to you",
     description:
-      "Browse 217 courses organized by stack, difficulty, and outcome. Each one maps to a concrete artifact you will ship by the end.",
+      `Browse ${AIUB_COURSE_COUNT} AIUB CSE courses organized by discipline and difficulty. Each one maps to a concrete artifact you will ship by the end.`,
     iconBg: "bg-accent-500/10",
     iconColor: "text-accent-400",
   },

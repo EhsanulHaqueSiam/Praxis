@@ -1,4 +1,4 @@
-import { Button } from "@lumina/ui";
+import { Button, AIUB_COURSE_COUNT } from "@lumina/ui";
 import { ArrowRight, Play, User, TrendUp } from "@phosphor-icons/react";
 import { MagneticButton } from "~/components/shared/MagneticButton";
 import { ScrollCue } from "~/components/shared/ScrollCue";
@@ -114,7 +114,7 @@ export function Hero() {
               </div>
               <div className="w-px bg-zinc-800" />
               <div>
-                <div className="font-mono font-bold text-white text-lg">217 courses</div>
+                <div className="font-mono font-bold text-white text-lg">{AIUB_COURSE_COUNT} courses</div>
                 <div className="text-zinc-500 text-xs">Project-based</div>
               </div>
             </div>

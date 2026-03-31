@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
-import { Button, Input, useAuth } from "@lumina/ui";
+import { Button, Input, useAuth, AIUB_COURSE_COUNT } from "@lumina/ui";
 import {
   GraduationCap,
   ArrowRight,
@@ -116,7 +116,7 @@ function LoginPage() {
 
             <div className="flex gap-8 mt-10">
               {[
-                { value: "217", label: "Courses" },
+                { value: String(AIUB_COURSE_COUNT), label: "Courses" },
                 { value: "11,480+", label: "Builders" },
                 { value: "91.3%", label: "Completion" },
               ].map((stat) => (

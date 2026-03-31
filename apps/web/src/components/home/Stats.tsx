@@ -1,10 +1,11 @@
 import { useInView } from "~/hooks/useInView";
 import { useCountUp } from "~/hooks/useCountUp";
 import { Tooltip } from "~/components/shared/Tooltip";
+import { AIUB_COURSE_COUNT } from "@lumina/ui";
 
 const stats = [
   { value: 11480, suffix: "+", label: "Active builders", format: "int", tooltip: "Up 23% this quarter" },
-  { value: 217, suffix: "", label: "Project-based courses", format: "int", tooltip: "12 new courses added this month" },
+  { value: AIUB_COURSE_COUNT, suffix: "", label: "Project-based courses", format: "int", tooltip: "AIUB CSE undergraduate catalog" },
   { value: 91.3, suffix: "%", label: "Completion rate", format: "decimal", tooltip: "vs. industry average of 34%" },
   { value: 4.82, suffix: "", label: "Average rating", format: "decimal", tooltip: "Across 8,400+ reviews" },
 ];

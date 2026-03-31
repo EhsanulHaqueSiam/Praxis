@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Button, Input, useAuth } from "@lumina/ui";
+import { Button, Input, useAuth, AIUB_COURSE_COUNT } from "@lumina/ui";
 import {
   GraduationCap,
   ArrowRight,
@@ -41,7 +41,7 @@ function RegisterPage() {
   }
 
   const benefits = [
-    "217 expert-led courses across engineering and design",
+    `${AIUB_COURSE_COUNT} expert-led AIUB CSE courses across engineering disciplines`,
     "Hands-on projects reviewed by working professionals",
     "Industry-recognized certificates on completion",
     "Private community of 11,480+ builders",
