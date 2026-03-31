@@ -64,3 +64,4 @@ Two apps that feel like one site:
 - Netlify deployment configured
 - Codebase map: .planning/codebase/ (7 documents, 1,601 lines)
 - Repo: github.com/EhsanulHaqueSiam/Praxis (public)
+- Phase 1 complete: 51 real AIUB CSE courses, shared data module, JSON-LD Course schema, all "217" placeholders replaced
