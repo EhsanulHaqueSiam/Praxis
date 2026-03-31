@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Card, CardContent, Badge, Button } from "@lumina/ui";
+import { Card, CardContent, Badge, Button, courses } from "@lumina/ui";
 import {
   Play,
   ArrowRight,
@@ -11,49 +11,52 @@ import {
   Star,
   CheckCircle,
   Lightning,
-  Code,
-  PaintBrush,
-  Brain,
 } from "@phosphor-icons/react";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   component: DashboardPage,
 });
 
+const findCourse = (code: string) => courses.find((c) => c.code === code)!;
+
+const csc1102 = findCourse("CSC 1102");
+const csc2106 = findCourse("CSC 2106");
+const csc3217 = findCourse("CSC 3217");
+
 const enrolledCourses = [
   {
-    courseId: "production-grade-react",
-    title: "Production-Grade React",
-    instructor: "Tomoko Westergaard",
+    courseId: csc1102.slug,
+    title: csc1102.name,
+    instructor: csc1102.instructor,
     progress: 72,
-    nextLesson: "Server Components & Streaming",
+    nextLesson: "Functions and Recursion",
     totalLessons: 43,
     completedLessons: 31,
-    icon: Code,
+    icon: csc1102.icon,
     accentBg: "from-accent-600/15 to-accent-600/5",
     accentText: "text-accent-400",
   },
   {
-    courseId: "interface-design-systems",
-    title: "Interface Design Systems",
-    instructor: "Idris Okonkwo-Petit",
+    courseId: csc2106.slug,
+    title: csc2106.name,
+    instructor: csc2106.instructor,
     progress: 38,
-    nextLesson: "Token Architecture & Theming",
+    nextLesson: "AVL Trees and Balancing",
     totalLessons: 36,
     completedLessons: 14,
-    icon: PaintBrush,
+    icon: csc2106.icon,
     accentBg: "from-accent-600/15 to-accent-600/5",
     accentText: "text-accent-400",
   },
   {
-    courseId: "applied-machine-learning",
-    title: "Applied Machine Learning",
-    instructor: "Dr. Meera Johansson",
+    courseId: csc3217.slug,
+    title: csc3217.name,
+    instructor: csc3217.instructor,
     progress: 14,
-    nextLesson: "Feature Engineering Pipelines",
+    nextLesson: "Search Algorithms",
     totalLessons: 52,
     completedLessons: 8,
-    icon: Brain,
+    icon: csc3217.icon,
     accentBg: "from-accent-600/15 to-accent-600/5",
     accentText: "text-accent-400",
   },
@@ -82,23 +85,10 @@ const recentActivity = [
   },
 ];
 
-const recommendedCourses = [
-  {
-    title: "TypeScript Patterns",
-    rating: 4.87,
-    price: "$39",
-  },
-  {
-    title: "Distributed Systems",
-    rating: 4.79,
-    price: "$54",
-  },
-  {
-    title: "Container Orchestration",
-    rating: 4.91,
-    price: "$49",
-  },
-];
+const recommendedCourses = ["CSC 2211", "CSC 3215", "CSC 1205"].map((code) => {
+  const c = findCourse(code);
+  return { title: c.name, rating: c.rating, price: c.price };
+});
 
 function DashboardPage() {
   return (

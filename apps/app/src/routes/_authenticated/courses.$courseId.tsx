@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Badge, Button } from "@lumina/ui";
+import { Badge, Button, courses } from "@lumina/ui";
 import {
   Play,
   CheckCircle,
@@ -112,6 +112,11 @@ function LessonIcon({ status }: { status: Lesson["status"] }) {
 }
 
 function CourseDetailPage() {
+  const { courseId } = Route.useParams();
+  const course = courses.find((c) => c.slug === courseId);
+  const courseTitle = course?.name ?? "Course";
+  const CourseIcon = course?.icon ?? Code;
+
   const completedCount = chapters.reduce(
     (acc, ch) => acc + ch.lessons.filter((l) => l.status === "completed").length,
     0
@@ -126,10 +131,10 @@ function CourseDetailPage() {
         <div className="p-6 space-y-4">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-accent-500 to-accent-700 flex items-center justify-center">
-              <Code className="h-5 w-5 text-white/80" weight="duotone" />
+              <CourseIcon className="h-5 w-5 text-white/80" weight="duotone" />
             </div>
             <h2 className="font-display font-bold text-white text-lg leading-tight">
-              Production-Grade React
+              {courseTitle}
             </h2>
           </div>
 

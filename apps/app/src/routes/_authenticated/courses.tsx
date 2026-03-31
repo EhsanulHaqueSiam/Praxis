@@ -1,17 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Input } from "@lumina/ui";
-import {
-  Code,
-  PaintBrush,
-  Brain,
-  BracketsCurly,
-  CloudArrowUp,
-  Cube,
-  Database,
-  PencilRuler,
-  Robot,
-  MagnifyingGlass,
-} from "@phosphor-icons/react";
+import { Input, courses } from "@lumina/ui";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 import { PageHeader } from "../../components/PageHeader";
 import { AppCourseCard } from "../../components/AppCourseCard";
 
@@ -19,98 +8,62 @@ export const Route = createFileRoute("/_authenticated/courses")({
   component: CoursesPage,
 });
 
+const findCourse = (code: string) => courses.find((c) => c.code === code)!;
+
+const csc1102 = findCourse("CSC 1102");
+const csc2106 = findCourse("CSC 2106");
+const csc3217 = findCourse("CSC 3217");
+
 const enrolledCourses = [
   {
-    courseId: "production-grade-react",
-    title: "Production-Grade React",
-    instructor: "Tomoko Westergaard",
-    icon: Code,
-    gradient: "from-accent-500 to-accent-700",
+    courseId: csc1102.slug,
+    title: csc1102.name,
+    instructor: csc1102.instructor,
+    icon: csc1102.icon,
+    gradient: csc1102.gradient,
     progress: 72,
     totalLessons: 43,
     completedLessons: 31,
-    nextLesson: "Server Components & Streaming",
+    nextLesson: "Functions and Recursion",
   },
   {
-    courseId: "interface-design-systems",
-    title: "Interface Design Systems",
-    instructor: "Idris Okonkwo-Petit",
-    icon: PaintBrush,
-    gradient: "from-violet-500 to-violet-700",
+    courseId: csc2106.slug,
+    title: csc2106.name,
+    instructor: csc2106.instructor,
+    icon: csc2106.icon,
+    gradient: csc2106.gradient,
     progress: 38,
     totalLessons: 36,
     completedLessons: 14,
-    nextLesson: "Token Architecture & Theming",
+    nextLesson: "AVL Trees and Balancing",
   },
   {
-    courseId: "applied-machine-learning",
-    title: "Applied Machine Learning",
-    instructor: "Dr. Meera Johansson",
-    icon: Brain,
-    gradient: "from-amber-500 to-amber-700",
+    courseId: csc3217.slug,
+    title: csc3217.name,
+    instructor: csc3217.instructor,
+    icon: csc3217.icon,
+    gradient: csc3217.gradient,
     progress: 14,
     totalLessons: 52,
     completedLessons: 8,
-    nextLesson: "Feature Engineering Pipelines",
+    nextLesson: "Search Algorithms",
   },
 ];
 
-const catalogCourses = [
-  {
-    courseId: "typescript-patterns",
-    title: "TypeScript Patterns",
-    instructor: "Kael Nakamura-Boyce",
-    icon: BracketsCurly,
-    gradient: "from-blue-500 to-blue-700",
-    rating: 4.87,
-    price: "$39",
+const catalogCourses = ["CSC 2211", "CSC 3215", "CSC 1205", "CSC 2108", "COE 3204", "CSC 3214"].map(
+  (code) => {
+    const c = findCourse(code);
+    return {
+      courseId: c.slug,
+      title: c.name,
+      instructor: c.instructor,
+      icon: c.icon,
+      gradient: c.gradient,
+      rating: c.rating,
+      price: c.price,
+    };
   },
-  {
-    courseId: "distributed-systems",
-    title: "Distributed Systems",
-    instructor: "Delphine Ayari",
-    icon: CloudArrowUp,
-    gradient: "from-cyan-500 to-cyan-700",
-    rating: 4.79,
-    price: "$54",
-  },
-  {
-    courseId: "container-orchestration",
-    title: "Container Orchestration",
-    instructor: "Henrik Vasquez-Lund",
-    icon: Cube,
-    gradient: "from-orange-500 to-orange-700",
-    rating: 4.91,
-    price: "$49",
-  },
-  {
-    courseId: "sql-mastery",
-    title: "SQL Mastery",
-    instructor: "Amara Osei-Boateng",
-    icon: Database,
-    gradient: "from-emerald-500 to-emerald-700",
-    rating: 4.74,
-    price: "$34",
-  },
-  {
-    courseId: "design-engineering",
-    title: "Design Engineering",
-    instructor: "Ren Ishikawa-Flores",
-    icon: PencilRuler,
-    gradient: "from-pink-500 to-pink-700",
-    rating: 4.84,
-    price: "$44",
-  },
-  {
-    courseId: "nlp-in-production",
-    title: "NLP in Production",
-    instructor: "Dr. Meera Johansson",
-    icon: Robot,
-    gradient: "from-purple-500 to-purple-700",
-    rating: 4.86,
-    price: "$54",
-  },
-];
+);
 
 function CoursesPage() {
   return (
