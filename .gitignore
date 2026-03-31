@@ -2,6 +2,7 @@ node_modules/
 dist/
 dist-netlify/
 netlify/edge-functions/
+netlify/functions/_ssr-server/
 .output/
 .vinxi/
 .vercel/
