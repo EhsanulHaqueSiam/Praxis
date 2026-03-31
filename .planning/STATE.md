@@ -3,13 +3,14 @@
 ## Current
 - **Milestone**: 1 (Production-Ready Shell)
 - **Phase**: 1 — AIUB Course Data & Catalog
-- **Plan**: 01-02 complete — marketing site migrated to shared course data
-- **Status**: Phase 1 complete — course data module + marketing site migration done
+- **Plan**: 01-03 complete — dashboard course consumers migrated, all 217 counts replaced
+- **Status**: Phase 1 complete — all 3 plans done
 - **Resume**: Next phase TBD
 
 ## History
 | Date | Action | Notes |
 |------|--------|-------|
+| 2026-03-31 | Plan 01-03 complete | Dashboard app migrated: courses.tsx, dashboard.tsx, courses.$courseId.tsx all use @lumina/ui; all 217 course count literals replaced with AIUB_COURSE_COUNT (51) |
 | 2026-03-31 | Plan 01-02 complete | Marketing site migrated: CourseGrid, CoursesHero, FeaturedCourses, PathsGrid, courses route all use @lumina/ui; JSON-LD Course schema added |
 | 2026-03-31 | Plan 01-01 complete | Course data module: 51 courses, Course interface, AIUB_COURSE_COUNT=51 in @lumina/ui |
 | 2026-03-31 | Phase 1 context gathered | Assumptions mode, 10 decisions captured |
@@ -27,6 +28,8 @@
 - **Marketing site**: All course components import from @lumina/ui; no inline course arrays; categories are 5 AIUB-aligned names
 - **Learning paths**: 4 paths (Full-Stack Engineer, ML Engineer, Systems Architect, CS Theorist) with real AIUB course codes
 - **SEO**: JSON-LD ItemList+Course schema on /courses route; 51 Course schema objects
+- **Dashboard data**: All course consumers (courses.tsx, dashboard.tsx, courses.$courseId.tsx) import from @lumina/ui; course detail title derives from route param + shared module
+- **Course count**: AIUB_COURSE_COUNT (51) is the single source of truth — zero hardcoded 217 literals in source files
 
 ## Constant Rules
 1. `/frontend-design` for ALL design work
