@@ -10,7 +10,7 @@ export function PageHeader({ title, subtitle, action }: PageHeaderProps) {
       <div>
         <h1 className="font-display text-2xl font-bold text-white">{title}</h1>
         {subtitle && (
-          <p className="text-sm text-zinc-400 mt-1">{subtitle}</p>
+          <p className="text-sm text-zinc-500 mt-1">{subtitle}</p>
         )}
       </div>
       {action && <div className="shrink-0">{action}</div>}

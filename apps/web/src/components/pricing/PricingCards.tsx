@@ -1,5 +1,7 @@
 import { Button, Badge } from "@lumina/ui";
 import { CheckCircle, Minus } from "@phosphor-icons/react";
+import { TiltCard } from "~/components/shared/TiltCard";
+import { AnimateOnScroll } from "~/components/shared/AnimateOnScroll";
 
 const freeFeatures = [
   { label: "3 courses per month", included: true },
@@ -29,7 +31,8 @@ export function PricingCards() {
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
           {/* Free Card */}
-          <div className="rounded-3xl border border-white/[0.06] bg-zinc-900 p-8">
+          <AnimateOnScroll delay={0}>
+          <div className="rounded-3xl border border-white/[0.06] bg-zinc-900 p-8 card-highlight">
             <div className="mb-6">
               <h3 className="font-display text-xl font-bold text-white mb-1">
                 Free
@@ -66,7 +69,7 @@ export function PricingCards() {
                 </li>
               ))}
             </ul>
-            <a href="https://app.praxis.dev/register">
+            <a href="/app/register">
               <Button
                 variant="outline"
                 className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 active:scale-[0.97] transition-all duration-150"
@@ -75,9 +78,11 @@ export function PricingCards() {
               </Button>
             </a>
           </div>
+          </AnimateOnScroll>
 
           {/* Pro Card */}
-          <div className="rounded-3xl border-2 border-accent-500/50 bg-zinc-900 p-8 relative shadow-[0_0_30px_rgba(56,165,113,0.08)]">
+          <AnimateOnScroll delay={150}>
+          <TiltCard intensity={4} className="rounded-3xl bg-zinc-900 p-8 relative gradient-border shadow-[0_0_30px_rgba(56,165,113,0.08)] card-highlight">
             <Badge className="absolute top-4 right-4 bg-accent-500/10 text-accent-400 border border-accent-500/20">
               Most popular
             </Badge>
@@ -109,12 +114,13 @@ export function PricingCards() {
                 </li>
               ))}
             </ul>
-            <a href="https://app.praxis.dev/register?plan=pro">
-              <Button className="w-full bg-white text-zinc-900 hover:bg-zinc-200 active:scale-[0.97] transition-all duration-150">
+            <a href="/app/register?plan=pro">
+              <Button className="w-full btn-shimmer bg-white text-zinc-900 hover:bg-zinc-200 active:scale-[0.97] transition-all duration-150">
                 Start building
               </Button>
             </a>
-          </div>
+          </TiltCard>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

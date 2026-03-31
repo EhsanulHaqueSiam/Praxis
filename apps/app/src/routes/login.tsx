@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button, Input } from "@lumina/ui";
+import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
+import { Button, Input, useAuth } from "@lumina/ui";
 import {
   GraduationCap,
   ArrowRight,
@@ -11,51 +11,86 @@ import {
 import { useState } from "react";
 
 export const Route = createFileRoute("/login")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    redirect: (search.redirect as string) || "/dashboard",
+  }),
   component: LoginPage,
 });
 
+const DEMO_USER = {
+  name: "Kael Nakamura-Boyce",
+  email: "kael@example.com",
+  avatar: "https://picsum.photos/seed/kael/100/100",
+};
+
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const { login, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const { redirect } = useSearch({ from: "/login" });
+
+  // If already logged in, redirect
+  if (isLoggedIn) {
+    navigate({ to: redirect as string });
+    return null;
+  }
+
+  function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    login(DEMO_USER);
+    // Use window.location for cross-app redirects
+    if (redirect && !redirect.startsWith("/dashboard")) {
+      window.location.href = `/app${redirect}`;
+    } else {
+      navigate({ to: "/dashboard" });
+    }
+  }
+
+  function handleSocialLogin() {
+    login(DEMO_USER);
+    window.location.href = `/app${redirect}`;
+  }
 
   return (
     <div className="min-h-[100dvh] flex">
       {/* Left - Brand Panel */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950 overflow-hidden">
-        {/* Grid overlay */}
-        <div className="absolute inset-0 bg-grid-dark opacity-30" />
-
-        {/* Floating decorative elements */}
-        <div className="absolute top-[15%] right-[15%] w-20 h-20 rounded-2xl bg-zinc-700/20 border border-zinc-600/20 backdrop-blur-sm animate-float" />
+      <div className="hidden lg:flex lg:w-1/2 relative bg-zinc-950 overflow-hidden">
         <div
-          className="absolute bottom-[25%] left-[10%] w-16 h-16 rounded-2xl bg-accent-600/10 border border-accent-500/20 backdrop-blur-sm animate-float"
-          style={{ animationDelay: "2s" }}
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 30% 50%, rgba(56,165,113,0.06), transparent 70%)",
+          }}
+        />
+        <div className="absolute inset-0 bg-grid-dark opacity-[0.08]" />
+
+        <div className="absolute top-[15%] right-[15%] w-20 h-20 rounded-2xl border border-white/[0.04] backdrop-blur-sm animate-float" />
+        <div
+          className="absolute bottom-[25%] left-[10%] w-16 h-16 rounded-2xl border border-white/[0.04] backdrop-blur-sm animate-float"
+          style={{ animationDelay: "2s", animationDuration: "7s" }}
         />
         <div
-          className="absolute top-[55%] right-[25%] w-12 h-12 rounded-xl bg-zinc-600/15 border border-zinc-500/15 backdrop-blur-sm animate-float"
-          style={{ animationDelay: "4s" }}
+          className="absolute top-[55%] right-[25%] w-12 h-12 rounded-xl border border-white/[0.04] backdrop-blur-sm animate-float"
+          style={{ animationDelay: "4s", animationDuration: "6s" }}
         />
 
-        {/* Content */}
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2">
             <GraduationCap className="h-8 w-8 text-white" weight="duotone" />
             <span className="font-display text-xl font-bold text-white">
               Praxis
             </span>
-          </div>
+          </a>
 
-          {/* Hero text */}
           <div className="max-w-md">
-            <h1 className="font-display text-4xl font-extrabold text-white leading-tight mb-4">
+            <h1 className="font-display text-4xl font-extrabold leading-tight mb-4 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
               Pick up where you left off
             </h1>
-            <p className="text-zinc-400 leading-relaxed">
+            <p className="text-zinc-500 leading-relaxed">
               Your courses, progress, and certificates are exactly where you
               left them.
             </p>
 
-            {/* Stats */}
             <div className="flex gap-8 mt-10">
               {[
                 { value: "217", label: "Courses" },
@@ -66,18 +101,17 @@ function LoginPage() {
                   <div className="font-display text-2xl font-bold text-white">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-zinc-500">{stat.label}</div>
+                  <div className="text-xs text-zinc-600">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Testimonial */}
-          <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-6 backdrop-blur-sm">
-            <p className="text-sm text-zinc-300 leading-relaxed mb-4">
-              "Praxis gave me the structure I never had teaching myself. I went
+          <div className="bg-zinc-900/50 border border-white/[0.06] rounded-2xl p-6 backdrop-blur-xl">
+            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+              &ldquo;Praxis gave me the structure I never had teaching myself. I went
               from writing spaghetti code to shipping production services in
-              under four months."
+              under four months.&rdquo;
             </p>
             <div className="flex items-center gap-3">
               <img
@@ -86,10 +120,10 @@ function LoginPage() {
                 className="h-8 w-8 rounded-full object-cover"
               />
               <div>
-                <div className="text-sm font-semibold text-zinc-200">
+                <div className="text-sm font-semibold text-zinc-300">
                   Delphine Ayari
                 </div>
-                <div className="text-xs text-zinc-500">
+                <div className="text-xs text-zinc-600">
                   Staff Eng at Datadog
                 </div>
               </div>
@@ -101,61 +135,64 @@ function LoginPage() {
       {/* Right - Login Form */}
       <div className="flex-1 flex items-center justify-center p-6 sm:p-12 bg-zinc-950">
         <div className="w-full max-w-sm">
-          {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2 mb-10">
-            <GraduationCap
-              className="h-7 w-7 text-accent-500"
-              weight="duotone"
-            />
-            <span className="font-display text-lg font-bold text-white">
-              Praxis
-            </span>
+            <a href="/" className="flex items-center gap-2">
+              <GraduationCap className="h-7 w-7 text-accent-500" weight="duotone" />
+              <span className="font-display text-lg font-bold text-white">
+                Praxis
+              </span>
+            </a>
           </div>
 
           <h2 className="font-display text-2xl font-bold text-white mb-2">
             Welcome back
           </h2>
-          <p className="text-sm text-zinc-500 mb-8">
+          <p className="text-sm text-zinc-600 mb-8">
             Sign in to your workspace
           </p>
 
           {/* Social Buttons */}
           <div className="grid grid-cols-2 gap-3 mb-6">
-            <button className="flex items-center justify-center gap-2 h-11 rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-zinc-700/80 active:scale-[0.97]">
+            <button
+              onClick={handleSocialLogin}
+              className="flex items-center justify-center gap-2 h-11 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-sm font-medium transition-[background-color,border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-zinc-700 hover:bg-zinc-800 active:scale-[0.97]"
+            >
               <GoogleLogo className="h-4 w-4" weight="bold" />
               Google
             </button>
-            <button className="flex items-center justify-center gap-2 h-11 rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-zinc-700/80 active:scale-[0.97]">
+            <button
+              onClick={handleSocialLogin}
+              className="flex items-center justify-center gap-2 h-11 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-sm font-medium transition-[background-color,border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-zinc-700 hover:bg-zinc-800 active:scale-[0.97]"
+            >
               <GithubLogo className="h-4 w-4" weight="bold" />
               GitHub
             </button>
           </div>
 
-          {/* Divider */}
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex-1 h-px bg-zinc-800" />
-            <span className="text-xs text-zinc-500 uppercase tracking-wider">
+            <div className="flex-1 h-px bg-zinc-800/50" />
+            <span className="text-xs text-zinc-600 uppercase tracking-wider">
               or continue with email
             </span>
-            <div className="flex-1 h-px bg-zinc-800" />
+            <div className="flex-1 h-px bg-zinc-800/50" />
           </div>
 
-          {/* Form */}
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-4" onSubmit={handleLogin}>
             <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-1.5">
+              <label className="block text-sm font-medium text-zinc-500 mb-1.5">
                 Email
               </label>
               <Input
                 type="email"
                 placeholder="you@example.com"
-                className="bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600"
+                defaultValue="kael@example.com"
+                className="bg-zinc-900 border-zinc-800 text-zinc-100 placeholder:text-zinc-700 focus-visible:ring-2 focus-visible:ring-accent-500/20 focus-visible:border-accent-500/40"
               />
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-sm font-medium text-zinc-400">
+                <label className="text-sm font-medium text-zinc-500">
                   Password
                 </label>
                 <a
@@ -169,12 +206,13 @@ function LoginPage() {
                 <Input
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
-                  className="bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 pr-10"
+                  defaultValue="demo123"
+                  className="bg-zinc-900 border-zinc-800 text-zinc-100 placeholder:text-zinc-700 pr-10 focus-visible:ring-2 focus-visible:ring-accent-500/20 focus-visible:border-accent-500/40"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-400 transition-colors"
                 >
                   {showPassword ? (
                     <EyeSlash className="h-4 w-4" />
@@ -189,21 +227,22 @@ function LoginPage() {
               <input
                 type="checkbox"
                 id="remember"
-                className="h-4 w-4 rounded border-zinc-700 bg-zinc-900 text-accent-600 focus:ring-accent-500/30"
+                defaultChecked
+                className="h-4 w-4 rounded border-zinc-700 bg-zinc-900 accent-accent-500 focus:ring-accent-500/30"
               />
               <label htmlFor="remember" className="text-sm text-zinc-500">
                 Keep me signed in
               </label>
             </div>
 
-            <Button className="w-full bg-accent-600 hover:bg-accent-700" size="lg">
+            <Button type="submit" className="w-full btn-shimmer" size="lg">
               Sign In
               <ArrowRight className="h-4 w-4" />
             </Button>
           </form>
 
-          <p className="text-center text-sm text-zinc-500 mt-6">
-            Don't have an account?{" "}
+          <p className="text-center text-sm text-zinc-600 mt-6">
+            Don&apos;t have an account?{" "}
             <Link
               to="/register"
               className="text-accent-400 hover:text-accent-300 font-medium transition-colors"

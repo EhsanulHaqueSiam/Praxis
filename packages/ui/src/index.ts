@@ -14,3 +14,4 @@ export { Toggle } from "./components/toggle";
 export { Accordion, type AccordionItem } from "./components/accordion";
 export { Tabs } from "./components/tabs";
 export { cn } from "./lib/utils";
+export { AuthProvider, useAuth } from "./auth";

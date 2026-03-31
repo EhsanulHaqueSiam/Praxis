@@ -1,8 +1,10 @@
 node_modules/
 dist/
+dist-netlify/
 .output/
 .vinxi/
 .vercel/
+.netlify/
 .turbo/
 *.tsbuildinfo
 .env

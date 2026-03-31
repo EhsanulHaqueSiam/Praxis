@@ -4,8 +4,15 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { AuthProvider } from "@lumina/ui";
 import { Header } from "~/components/layout/Header";
 import { Footer } from "~/components/layout/Footer";
+import { CursorGlow } from "~/components/shared/CursorGlow";
+import { ScrollProgress } from "~/components/shared/ScrollProgress";
+import { BackToTop } from "~/components/shared/BackToTop";
+import { PageTransition } from "~/components/shared/PageTransition";
+import { CookieConsent } from "~/components/shared/CookieConsent";
+import { AnnouncementBar } from "~/components/shared/AnnouncementBar";
 import appCss from "~/styles/app.css?url";
 
 export const Route = createRootRoute({
@@ -35,10 +42,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
         href: "https://fonts.gstatic.com",
@@ -58,7 +62,7 @@ export const Route = createRootRoute({
           name: "Praxis",
           description:
             "Project-based learning platform for working engineers",
-          url: "https://app.praxis.dev",
+          url: "https://praxis.dev",
         }),
       },
     ],
@@ -72,18 +76,26 @@ function RootComponent() {
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-[100dvh] bg-zinc-950 text-zinc-100 font-body antialiased">
+      <body className="min-h-[100dvh] bg-zinc-950 text-zinc-100 font-body antialiased grain-overlay">
         <noscript>
           <style>{`
             [data-animate] { opacity: 1 !important; transform: none !important; }
             .js-only { display: none; }
           `}</style>
         </noscript>
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
+        <AuthProvider>
+          <PageTransition />
+          <ScrollProgress />
+          <CursorGlow />
+          <AnnouncementBar />
+          <Header />
+          <main>
+            <Outlet />
+          </main>
+          <Footer />
+          <BackToTop />
+          <CookieConsent />
+        </AuthProvider>
         <Scripts />
       </body>
     </html>

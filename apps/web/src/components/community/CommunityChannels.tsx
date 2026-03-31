@@ -6,6 +6,8 @@ import {
   UsersThree,
 } from "@phosphor-icons/react";
 import { SectionHeader } from "~/components/shared/SectionHeader";
+import { AnimateOnScroll } from "~/components/shared/AnimateOnScroll";
+import { SpotlightCard } from "~/components/shared/SpotlightCard";
 
 const channels = [
   {
@@ -58,14 +60,14 @@ export function CommunityChannels() {
         />
 
         <div className="grid md:grid-cols-2 gap-6">
-          {channels.map((channel) => {
+          {channels.map((channel, i) => {
             const Icon = channel.icon;
             return (
-              <div
-                key={channel.title}
-                className="rounded-2xl border border-white/[0.06] bg-zinc-900 p-6 md:p-8 hover:border-white/[0.12] transition-all duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-px"
+              <AnimateOnScroll key={channel.title} delay={i * 100}>
+              <SpotlightCard
+                className="rounded-2xl border border-white/[0.06] bg-zinc-900 p-6 md:p-8 hover:border-white/[0.12] transition-all duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-px card-highlight"
               >
-                <div className="flex items-center gap-3 mb-4">
+                <div className="relative z-10 flex items-center gap-3 mb-4">
                   <div
                     className={`h-10 w-10 rounded-xl ${channel.iconBg} flex items-center justify-center`}
                   >
@@ -79,13 +81,14 @@ export function CommunityChannels() {
                     {channel.title}
                   </h3>
                 </div>
-                <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+                <p className="relative z-10 text-sm text-zinc-400 leading-relaxed mb-4">
                   {channel.description}
                 </p>
-                <div className="font-mono text-xs text-accent-400 font-medium">
+                <div className="relative z-10 font-mono text-xs text-accent-400 font-medium">
                   {channel.stat}
                 </div>
-              </div>
+              </SpotlightCard>
+              </AnimateOnScroll>
             );
           })}
         </div>

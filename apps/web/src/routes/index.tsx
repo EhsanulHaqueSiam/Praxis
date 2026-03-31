@@ -7,6 +7,8 @@ import { HowItWorks } from "~/components/home/HowItWorks";
 import { Stats } from "~/components/home/Stats";
 import { Testimonials } from "~/components/home/Testimonials";
 import { CTA } from "~/components/home/CTA";
+import { SectionDots } from "~/components/shared/SectionDots";
+import { GradientDivider } from "~/components/shared/GradientDivider";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,14 +30,18 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <>
-      <Hero />
+      <SectionDots />
+      <div id="hero"><Hero /></div>
       <Marquee />
       <TrustedBy />
-      <FeaturedCourses />
-      <HowItWorks />
-      <Stats />
-      <Testimonials />
-      <CTA />
+      <GradientDivider />
+      <div id="features"><FeaturedCourses /></div>
+      <GradientDivider />
+      <div id="how-it-works"><HowItWorks /></div>
+      <div id="stats"><Stats /></div>
+      <GradientDivider />
+      <div id="testimonials"><Testimonials /></div>
+      <div id="cta"><CTA /></div>
     </>
   );
 }

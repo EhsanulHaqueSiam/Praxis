@@ -6,7 +6,7 @@ import {
   YoutubeLogo,
   GithubLogo,
 } from "@phosphor-icons/react";
-import { Button, Input } from "@lumina/ui";
+import { Button } from "@lumina/ui";
 
 const footerLinks = {
   Platform: [
@@ -44,11 +44,12 @@ export function Footer() {
     <footer className="border-t border-white/[0.06] bg-zinc-950">
       {/* Newsletter Section */}
       <div className="mx-auto max-w-7xl px-4 py-16">
-        <div className="rounded-2xl border border-white/[0.06] bg-zinc-900 p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-dark" />
+        <div className="rounded-3xl bg-zinc-900 border border-white/[0.06] p-8 md:p-12 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-dark opacity-40" />
+          <div className="absolute inset-0 glow-green opacity-30" />
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-zinc-100 mb-2">
+              <h3 className="font-display text-2xl md:text-3xl font-bold mb-2">
                 Stay ahead of the curve
               </h3>
               <p className="text-zinc-400 text-sm md:text-base max-w-md">
@@ -56,13 +57,16 @@ export function Footer() {
                 practical engineering tips.
               </p>
             </div>
-            <div className="flex gap-2 w-full md:w-auto">
-              <Input
-                type="email"
-                placeholder="your@email.com"
-                className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500 focus-visible:ring-accent-500/20 focus-visible:border-accent-500 md:w-64"
-              />
-              <Button className="bg-accent-500 hover:bg-accent-600 text-white shrink-0 shadow-none">
+            <div className="flex gap-2 w-full md:w-auto items-end">
+              <div className="floating-label md:w-64 w-full">
+                <input
+                  type="email"
+                  placeholder=" "
+                  className="flex h-12 w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 text-sm text-white shadow-sm transition-[border-color,box-shadow] duration-150 placeholder:text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/30 focus-visible:border-accent-500/40"
+                />
+                <label>Email address</label>
+              </div>
+              <Button className="bg-accent-500 hover:bg-accent-600 text-white shrink-0 btn-shimmer h-12">
                 Subscribe <ArrowRight size={16} />
               </Button>
             </div>
@@ -93,7 +97,7 @@ export function Footer() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="h-9 w-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:border-zinc-700 hover:text-white transition-colors duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                    className="h-9 w-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-500 hover:border-zinc-700 hover:text-white transition-[border-color,color] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]"
                   >
                     <Icon size={18} />
                   </a>
@@ -105,7 +109,7 @@ export function Footer() {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="text-xs uppercase tracking-widest text-zinc-400 font-medium mb-4">
+              <h4 className="font-display font-bold text-xs uppercase tracking-widest text-zinc-400 mb-4">
                 {title}
               </h4>
               <ul className="space-y-2.5">
@@ -113,7 +117,7 @@ export function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                      className="text-sm text-zinc-500 hover:text-zinc-300 text-highlight-hover transition-colors duration-150"
                     >
                       {link.label}
                     </a>
@@ -138,7 +142,7 @@ export function Footer() {
                 <a
                   key={item}
                   href="#"
-                  className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                  className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors duration-150"
                 >
                   {item}
                 </a>

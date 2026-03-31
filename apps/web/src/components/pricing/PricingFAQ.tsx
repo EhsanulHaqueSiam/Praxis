@@ -1,6 +1,7 @@
-import { Accordion, Badge } from "@lumina/ui";
+import { Accordion } from "@lumina/ui";
 import { SectionHeader } from "~/components/shared/SectionHeader";
 import { Question } from "@phosphor-icons/react";
+import { AnimateOnScroll } from "~/components/shared/AnimateOnScroll";
 
 const faqItems = [
   {
@@ -49,18 +50,18 @@ export function PricingFAQ() {
   return (
     <section className="bg-zinc-950 py-24 relative overflow-hidden">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
-        <SectionHeader
-          dark
-          badge={{ icon: Question, label: "FAQ" }}
-          title="Common questions"
-          subtitle="Everything you need to know about pricing and plans."
-        />
-        <div className="max-w-3xl">
-          <Accordion
-            items={faqItems}
-            className="[&_details]:bg-zinc-900 [&_details]:border-zinc-800 [&_summary]:text-white [&_summary:hover]:bg-zinc-800/50 [&_.text-zinc-400]:text-zinc-400 [&_svg]:text-zinc-500"
+        <AnimateOnScroll>
+          <SectionHeader
+            badge={{ icon: Question, label: "FAQ" }}
+            title="Common questions"
+            subtitle="Everything you need to know about pricing and plans."
           />
-        </div>
+        </AnimateOnScroll>
+        <AnimateOnScroll delay={150}>
+          <div className="max-w-3xl">
+            <Accordion items={faqItems} variant="cards" />
+          </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

@@ -6,6 +6,12 @@ import { fileURLToPath } from "url";
 export default defineConfig({
   server: {
     port: 3000,
+    proxy: {
+      "/app": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     TanStackRouterVite({

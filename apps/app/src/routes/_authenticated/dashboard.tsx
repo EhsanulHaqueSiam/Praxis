@@ -29,7 +29,7 @@ const enrolledCourses = [
     totalLessons: 43,
     completedLessons: 31,
     icon: Code,
-    accentBg: "bg-accent-600/15",
+    accentBg: "from-accent-600/15 to-accent-600/5",
     accentText: "text-accent-400",
   },
   {
@@ -40,8 +40,8 @@ const enrolledCourses = [
     totalLessons: 36,
     completedLessons: 14,
     icon: PaintBrush,
-    accentBg: "bg-zinc-700/30",
-    accentText: "text-zinc-300",
+    accentBg: "from-accent-600/15 to-accent-600/5",
+    accentText: "text-accent-400",
   },
   {
     title: "Applied Machine Learning",
@@ -51,8 +51,8 @@ const enrolledCourses = [
     totalLessons: 52,
     completedLessons: 8,
     icon: Brain,
-    accentBg: "bg-zinc-700/30",
-    accentText: "text-zinc-300",
+    accentBg: "from-accent-600/15 to-accent-600/5",
+    accentText: "text-accent-400",
   },
 ];
 
@@ -101,7 +101,8 @@ function DashboardPage() {
   return (
     <div className="p-6 lg:p-8 space-y-8 max-w-7xl mx-auto">
       {/* Welcome Banner */}
-      <div className="relative rounded-3xl bg-zinc-900 p-8 overflow-hidden">
+      <div className="relative rounded-2xl bg-zinc-900 border border-white/[0.06] p-8 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent-500/[0.08] via-transparent to-transparent" />
         <div className="absolute inset-0 bg-grid-dark opacity-20" />
 
         <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -110,14 +111,14 @@ function DashboardPage() {
               Welcome back,{" "}
               <span className="text-accent-400">Kael</span>
             </h1>
-            <p className="text-zinc-400 text-sm sm:text-base">
+            <p className="text-zinc-500 text-sm sm:text-base">
               You're on a 12-day streak. Keep the momentum.
             </p>
           </div>
-          <Button className="bg-accent-600 hover:bg-accent-700 shrink-0 group">
+          <Button className="bg-white text-zinc-900 hover:bg-zinc-200 shrink-0 group">
             Continue building
             <Play
-              className="h-4 w-4 ml-1 transition-transform group-hover:scale-110"
+              className="h-4 w-4 ml-1 transition-transform duration-150 group-hover:scale-110"
               weight="fill"
             />
           </Button>
@@ -152,17 +153,17 @@ function DashboardPage() {
           return (
             <Card
               key={stat.label}
-              className="bg-zinc-900 border-zinc-800"
+              className="bg-zinc-900 border border-white/[0.06]"
             >
               <CardContent className="p-5 flex items-center gap-4">
-                <div className="h-11 w-11 rounded-2xl bg-zinc-800 flex items-center justify-center">
+                <div className="h-11 w-11 rounded-xl bg-zinc-800 flex items-center justify-center">
                   <Icon className="h-5 w-5 text-accent-400" weight="duotone" />
                 </div>
                 <div>
                   <div className="font-mono text-2xl font-bold text-white">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-zinc-500">{stat.label}</div>
+                  <div className="text-xs text-zinc-600">{stat.label}</div>
                 </div>
               </CardContent>
             </Card>
@@ -179,7 +180,7 @@ function DashboardPage() {
             </h2>
             <a
               href="/courses"
-              className="text-sm text-accent-400 hover:text-accent-300 transition-colors"
+              className="text-sm text-accent-400 hover:text-accent-300 transition-colors duration-150"
             >
               View all
             </a>
@@ -191,16 +192,16 @@ function DashboardPage() {
               return (
                 <Card
                   key={course.title}
-                  className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-[border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover-lift group cursor-pointer"
+                  className="bg-zinc-900 border border-white/[0.06] hover:border-white/[0.12] transition-[border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover-lift group cursor-pointer"
                 >
                   <CardContent className="p-5">
                     <div className="flex gap-5">
                       {/* Course thumbnail */}
                       <div
-                        className={`hidden sm:flex h-24 w-36 shrink-0 rounded-xl ${course.accentBg} items-center justify-center`}
+                        className={`hidden sm:flex h-24 w-36 shrink-0 rounded-xl bg-gradient-to-br ${course.accentBg} items-center justify-center`}
                       >
                         <CourseIcon
-                          className={`h-8 w-8 ${course.accentText} group-hover:scale-110 transition-transform`}
+                          className={`h-8 w-8 ${course.accentText} group-hover:scale-110 transition-transform duration-150`}
                           weight="duotone"
                         />
                       </div>
@@ -208,10 +209,10 @@ function DashboardPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-3 mb-2">
                           <div>
-                            <h3 className="font-display font-bold text-white group-hover:text-accent-400 transition-colors truncate">
+                            <h3 className="font-display font-bold text-white group-hover:text-accent-400 transition-colors duration-150 truncate">
                               {course.title}
                             </h3>
-                            <p className="text-xs text-zinc-500">
+                            <p className="text-xs text-zinc-600">
                               {course.instructor}
                             </p>
                           </div>
@@ -231,9 +232,9 @@ function DashboardPage() {
                               {course.progress}%
                             </span>
                           </div>
-                          <div className="progress-bar">
+                          <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                             <div
-                              className="progress-bar-fill glow-accent"
+                              className="h-full bg-accent-500 rounded-full transition-all duration-300"
                               style={{ width: `${course.progress}%` }}
                             />
                           </div>
@@ -249,7 +250,7 @@ function DashboardPage() {
                             className="text-accent-400 hover:text-accent-300 shrink-0 group/btn"
                           >
                             Resume
-                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover/btn:translate-x-0.5" />
                           </Button>
                         </div>
                       </div>
@@ -268,7 +269,7 @@ function DashboardPage() {
             <h2 className="font-display text-xl font-bold text-white mb-4">
               Recent Activity
             </h2>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-zinc-900 border border-white/[0.06]">
               <CardContent className="p-4">
                 <div className="space-y-4">
                   {recentActivity.map((activity, i) => {
@@ -282,7 +283,7 @@ function DashboardPage() {
                           />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-sm text-zinc-300 truncate">
+                          <p className="text-sm text-zinc-400 truncate">
                             {activity.text}
                           </p>
                           <p className="text-xs text-zinc-600">
@@ -306,7 +307,7 @@ function DashboardPage() {
               {recommendedCourses.map((course) => (
                 <Card
                   key={course.title}
-                  className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 cursor-pointer transition-[border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] group"
+                  className="bg-zinc-900 border border-white/[0.06] hover:border-white/[0.12] cursor-pointer transition-[border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] group"
                 >
                   <CardContent className="p-4 flex items-center gap-3">
                     <div className="h-12 w-12 rounded-xl bg-zinc-800 flex items-center justify-center shrink-0">
@@ -316,7 +317,7 @@ function DashboardPage() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-display font-bold text-sm text-white group-hover:text-accent-400 transition-colors truncate">
+                      <h4 className="font-display font-bold text-sm text-white group-hover:text-accent-400 transition-colors duration-150 truncate">
                         {course.title}
                       </h4>
                       <div className="flex items-center gap-2 text-xs text-zinc-500">

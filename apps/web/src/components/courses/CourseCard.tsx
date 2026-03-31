@@ -1,5 +1,6 @@
-import { Star, Clock, Users } from "@phosphor-icons/react";
+import { Star, Clock, Users, ArrowRight } from "@phosphor-icons/react";
 import { Badge } from "@lumina/ui";
+import { SpotlightCard } from "~/components/shared/SpotlightCard";
 
 interface CourseCardProps {
   title: string;
@@ -45,26 +46,26 @@ export function CourseCard({
   const darkBg = darkIconBgMap[iconBg] ?? "bg-gradient-to-br from-zinc-600/20 to-zinc-600/5";
 
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-zinc-900 p-5 hover:border-white/[0.12] hover:-translate-y-px cursor-pointer active:scale-[0.97] transition-all duration-150">
+    <SpotlightCard className="hover-reveal-parent rounded-2xl border border-white/[0.06] bg-zinc-900 p-5 hover:border-white/[0.12] hover:-translate-y-px cursor-pointer active:scale-[0.97] transition-all duration-150 card-highlight">
       <div
-        className={`rounded-xl h-32 flex items-center justify-center mb-4 ${darkBg}`}
+        className={`relative z-10 rounded-xl h-32 flex items-center justify-center mb-4 ${darkBg}`}
       >
         <Icon size={36} weight="duotone" className={iconColor} />
       </div>
 
       {badgeText && (
-        <Badge variant="outline" className="mb-2 text-xs bg-zinc-800 text-zinc-400 border-zinc-700">
+        <Badge variant="outline" className="relative z-10 mb-2 text-xs bg-zinc-800 text-zinc-400 border-zinc-700">
           {badgeText}
         </Badge>
       )}
 
-      <h3 className="font-display text-lg font-bold text-zinc-100 mb-1">
+      <h3 className="relative z-10 font-display text-lg font-bold text-zinc-100 mb-1">
         {title}
       </h3>
 
-      <p className="text-sm text-zinc-500 mb-4">{instructor}</p>
+      <p className="relative z-10 text-sm text-zinc-500 mb-4">{instructor}</p>
 
-      <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-400 mb-4">
+      <div className="relative z-10 flex flex-wrap items-center gap-3 text-xs text-zinc-400 mb-4">
         <span className="flex items-center gap-1">
           <Star size={12} weight="fill" className="text-accent-400" />
           <span className="font-medium text-zinc-400">{rating}</span>
@@ -79,9 +80,16 @@ export function CourseCard({
         </span>
       </div>
 
-      <div className="flex items-center justify-end">
+      <div className="relative z-10 flex items-center justify-end">
         <span className="font-mono font-bold text-white">{price}</span>
       </div>
-    </div>
+
+      {/* Hover reveal overlay */}
+      <div className="hover-reveal-overlay">
+        <span className="flex items-center gap-1.5 text-sm font-medium text-white">
+          View course <ArrowRight size={14} />
+        </span>
+      </div>
+    </SpotlightCard>
   );
 }

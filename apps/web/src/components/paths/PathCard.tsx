@@ -1,5 +1,6 @@
 import { Badge } from "@lumina/ui";
 import { BookOpen, Clock, ChartLineUp } from "@phosphor-icons/react";
+import { TiltCard } from "~/components/shared/TiltCard";
 
 interface PathCardProps {
   title: string;
@@ -21,7 +22,7 @@ export function PathCard({
   icon: Icon,
 }: PathCardProps) {
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-zinc-900 p-6 md:p-8 hover:border-white/[0.12] hover:-translate-y-px transition-all duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]">
+    <TiltCard intensity={5} className="rounded-2xl border border-white/[0.06] bg-zinc-900 p-6 md:p-8 hover:border-white/[0.12] card-highlight">
       {/* Top: icon + title + description */}
       <div className="flex items-start gap-4 mb-6">
         <div className="h-12 w-12 rounded-xl bg-accent-500/10 flex items-center justify-center shrink-0">
@@ -63,6 +64,6 @@ export function PathCard({
           {difficulty}
         </Badge>
       </div>
-    </div>
+    </TiltCard>
   );
 }

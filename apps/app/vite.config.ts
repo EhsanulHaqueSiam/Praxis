@@ -4,6 +4,10 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { fileURLToPath } from "url";
 
 export default defineConfig({
+  base: "/app/",
+  server: {
+    port: 3001,
+  },
   plugins: [
     TanStackRouterVite({
       routesDirectory: "src/routes",

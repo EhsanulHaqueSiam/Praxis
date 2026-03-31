@@ -2,14 +2,15 @@
   "name": "lumina-edtech",
   "private": true,
   "scripts": {
+    "dev": "pnpm --filter @lumina/web dev & pnpm --filter @lumina/app dev",
     "dev:web": "pnpm --filter @lumina/web dev",
     "dev:app": "pnpm --filter @lumina/app dev",
-    "dev": "pnpm --filter @lumina/web dev & pnpm --filter @lumina/app dev",
+    "build": "pnpm --filter @lumina/web build && pnpm --filter @lumina/app build",
     "build:web": "pnpm --filter @lumina/web build",
     "build:app": "pnpm --filter @lumina/app build",
-    "build": "pnpm run --parallel build:web build:app",
-    "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck"
+    "build:netlify": "bash scripts/build-netlify.sh",
+    "preview:web": "pnpm --filter @lumina/web start",
+    "preview:app": "pnpm --filter @lumina/app preview"
   },
   "engines": {
     "node": ">=20",

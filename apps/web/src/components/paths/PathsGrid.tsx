@@ -8,6 +8,7 @@ import {
 } from "@phosphor-icons/react";
 import { PathCard } from "./PathCard";
 import { SectionHeader } from "~/components/shared/SectionHeader";
+import { AnimateOnScroll } from "~/components/shared/AnimateOnScroll";
 
 const paths = [
   {
@@ -112,14 +113,16 @@ export function PathsGrid() {
         />
 
         {/* First path: full width */}
-        <div className="mb-6">
+        <AnimateOnScroll className="mb-6">
           <PathCard {...paths[0]} />
-        </div>
+        </AnimateOnScroll>
 
         {/* Remaining paths: 2-col grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {paths.slice(1).map((path) => (
-            <PathCard key={path.title} {...path} />
+          {paths.slice(1).map((path, i) => (
+            <AnimateOnScroll key={path.title} delay={i * 100}>
+              <PathCard {...path} />
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

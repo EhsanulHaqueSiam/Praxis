@@ -18,7 +18,7 @@ export function PathsCTA() {
           to start any learning path.
         </p>
         <div className="flex flex-wrap gap-4">
-          <a href="https://app.praxis.dev/register">
+          <a href="/app/register">
             <Button
               size="xl"
               className="bg-white text-zinc-900 hover:bg-zinc-100 group active:scale-[0.97] transition-transform"

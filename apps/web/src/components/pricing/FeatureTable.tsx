@@ -1,12 +1,10 @@
 import { CheckCircle, Minus } from "@phosphor-icons/react";
 import { SectionHeader } from "~/components/shared/SectionHeader";
 
-type FeatureCheck = boolean;
-
 interface FeatureRow {
   feature: string;
-  free: FeatureCheck;
-  pro: FeatureCheck;
+  free: boolean;
+  pro: boolean;
 }
 
 interface FeatureGroup {
