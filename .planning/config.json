@@ -1,0 +1,22 @@
+{
+  "project": "Praxis",
+  "version": "1.0.0",
+  "milestone": 1,
+  "created": "2026-03-31",
+  "preferences": {
+    "commitStyle": "conventional",
+    "branchStrategy": "main",
+    "testBefore": true,
+    "screenshotVerify": true,
+    "designSkill": "/frontend-design",
+    "browserSkill": "/agent-browser"
+  },
+  "rules": {
+    "alwaysUseFrontendDesign": true,
+    "alwaysVerifyWithBrowser": true,
+    "useFramerComponents": true,
+    "ssrContentWithoutJs": true,
+    "seamlessDualSite": true,
+    "linearAesthetic": true
+  }
+}
