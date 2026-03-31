@@ -1,5 +1,6 @@
 import { Card, CardContent, Badge, Button } from "@lumina/ui";
 import { ArrowRight, Star } from "@phosphor-icons/react";
+import { Link } from "@tanstack/react-router";
 
 interface AppCourseCardProps {
   title: string;
@@ -13,6 +14,7 @@ interface AppCourseCardProps {
   rating?: number;
   price?: string;
   enrolled?: boolean;
+  courseId?: string;
 }
 
 export function AppCourseCard({
@@ -27,6 +29,7 @@ export function AppCourseCard({
   rating,
   price,
   enrolled,
+  courseId,
 }: AppCourseCardProps) {
   return (
     <Card className="bg-zinc-900 border border-white/[0.06] hover:border-white/[0.12] transition-[border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] group cursor-pointer">
@@ -78,14 +81,24 @@ export function AppCourseCard({
                   <p className="text-xs text-zinc-600 truncate">
                     Next: {nextLesson}
                   </p>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-accent-400 hover:text-accent-300 shrink-0 group/btn"
-                  >
-                    Resume
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover/btn:translate-x-0.5" />
-                  </Button>
+                  {courseId ? (
+                    <Link
+                      to="/courses/$courseId"
+                      params={{ courseId }}
+                      className="inline-flex items-center gap-1 text-sm font-semibold text-accent-400 hover:text-accent-300 shrink-0 group/btn"
+                    >
+                      Resume
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover/btn:translate-x-0.5" />
+                    </Link>
+                  ) : (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-accent-400 hover:text-accent-300 shrink-0"
+                    >
+                      Resume
+                    </Button>
+                  )}
                 </div>
               </>
             ) : (

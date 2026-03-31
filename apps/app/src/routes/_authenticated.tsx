@@ -2,6 +2,7 @@ import {
   createFileRoute,
   Outlet,
   Link,
+  Navigate,
   useLocation,
   useNavigate,
 } from "@tanstack/react-router";
@@ -47,6 +48,9 @@ function AuthenticatedLayout() {
   }, [isLoggedIn, navigate, location.pathname]);
 
   if (!isLoggedIn) return null;
+  if (location.pathname === "/") {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   return (
     <div className="flex min-h-[100dvh]">

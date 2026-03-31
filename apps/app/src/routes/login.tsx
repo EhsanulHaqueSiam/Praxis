@@ -8,11 +8,16 @@ import {
   GithubLogo,
   GoogleLogo,
 } from "@phosphor-icons/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/login")({
   validateSearch: (search: Record<string, unknown>) => ({
-    redirect: (search.redirect as string) || "/dashboard",
+    redirect:
+      typeof search.redirect === "string" &&
+      search.redirect.startsWith("/") &&
+      !search.redirect.startsWith("//")
+        ? search.redirect
+        : undefined,
   }),
   component: LoginPage,
 });
@@ -28,27 +33,42 @@ function LoginPage() {
   const { login, isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const { redirect } = useSearch({ from: "/login" });
+  const redirectPath = redirect ?? "/dashboard";
+  const isDashboardRedirect = redirectPath.startsWith("/dashboard");
 
-  // If already logged in, redirect
-  if (isLoggedIn) {
-    navigate({ to: redirect as string });
-    return null;
-  }
+  useEffect(() => {
+    if (!isLoggedIn) return;
+
+    if (isDashboardRedirect) {
+      navigate({ to: "/dashboard" });
+      return;
+    }
+
+    window.location.href = `/app${redirectPath}`;
+  }, [isLoggedIn, isDashboardRedirect, navigate, redirectPath]);
+
+  if (isLoggedIn) return null;
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     login(DEMO_USER);
-    // Use window.location for cross-app redirects
-    if (redirect && !redirect.startsWith("/dashboard")) {
-      window.location.href = `/app${redirect}`;
-    } else {
+
+    if (isDashboardRedirect) {
       navigate({ to: "/dashboard" });
+    } else {
+      window.location.href = `/app${redirectPath}`;
     }
   }
 
   function handleSocialLogin() {
     login(DEMO_USER);
-    window.location.href = `/app${redirect}`;
+
+    if (isDashboardRedirect) {
+      navigate({ to: "/dashboard" });
+      return;
+    }
+
+    window.location.href = `/app${redirectPath}`;
   }
 
   return (

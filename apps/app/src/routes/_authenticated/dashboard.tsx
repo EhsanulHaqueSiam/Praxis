@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Card, CardContent, Badge, Button } from "@lumina/ui";
 import {
   Play,
@@ -22,6 +22,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 
 const enrolledCourses = [
   {
+    courseId: "production-grade-react",
     title: "Production-Grade React",
     instructor: "Tomoko Westergaard",
     progress: 72,
@@ -33,6 +34,7 @@ const enrolledCourses = [
     accentText: "text-accent-400",
   },
   {
+    courseId: "interface-design-systems",
     title: "Interface Design Systems",
     instructor: "Idris Okonkwo-Petit",
     progress: 38,
@@ -44,6 +46,7 @@ const enrolledCourses = [
     accentText: "text-accent-400",
   },
   {
+    courseId: "applied-machine-learning",
     title: "Applied Machine Learning",
     instructor: "Dr. Meera Johansson",
     progress: 14,
@@ -178,12 +181,12 @@ function DashboardPage() {
             <h2 className="font-display text-xl font-bold text-white">
               Continue Learning
             </h2>
-            <a
-              href="/courses"
+            <Link
+              to="/courses"
               className="text-sm text-accent-400 hover:text-accent-300 transition-colors duration-150"
             >
               View all
-            </a>
+            </Link>
           </div>
 
           <div className="space-y-4">
@@ -244,14 +247,14 @@ function DashboardPage() {
                           <p className="text-xs text-zinc-600 truncate">
                             Next: {course.nextLesson}
                           </p>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="text-accent-400 hover:text-accent-300 shrink-0 group/btn"
+                          <Link
+                            to="/courses/$courseId"
+                            params={{ courseId: course.courseId }}
+                            className="inline-flex items-center text-sm font-semibold text-accent-400 hover:text-accent-300 shrink-0 group/btn"
                           >
                             Resume
                             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover/btn:translate-x-0.5" />
-                          </Button>
+                          </Link>
                         </div>
                       </div>
                     </div>

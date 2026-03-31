@@ -21,6 +21,7 @@ export const Route = createFileRoute("/_authenticated/courses")({
 
 const enrolledCourses = [
   {
+    courseId: "production-grade-react",
     title: "Production-Grade React",
     instructor: "Tomoko Westergaard",
     icon: Code,
@@ -31,6 +32,7 @@ const enrolledCourses = [
     nextLesson: "Server Components & Streaming",
   },
   {
+    courseId: "interface-design-systems",
     title: "Interface Design Systems",
     instructor: "Idris Okonkwo-Petit",
     icon: PaintBrush,
@@ -41,6 +43,7 @@ const enrolledCourses = [
     nextLesson: "Token Architecture & Theming",
   },
   {
+    courseId: "applied-machine-learning",
     title: "Applied Machine Learning",
     instructor: "Dr. Meera Johansson",
     icon: Brain,
@@ -54,6 +57,7 @@ const enrolledCourses = [
 
 const catalogCourses = [
   {
+    courseId: "typescript-patterns",
     title: "TypeScript Patterns",
     instructor: "Kael Nakamura-Boyce",
     icon: BracketsCurly,
@@ -62,6 +66,7 @@ const catalogCourses = [
     price: "$39",
   },
   {
+    courseId: "distributed-systems",
     title: "Distributed Systems",
     instructor: "Delphine Ayari",
     icon: CloudArrowUp,
@@ -70,6 +75,7 @@ const catalogCourses = [
     price: "$54",
   },
   {
+    courseId: "container-orchestration",
     title: "Container Orchestration",
     instructor: "Henrik Vasquez-Lund",
     icon: Cube,
@@ -78,6 +84,7 @@ const catalogCourses = [
     price: "$49",
   },
   {
+    courseId: "sql-mastery",
     title: "SQL Mastery",
     instructor: "Amara Osei-Boateng",
     icon: Database,
@@ -86,6 +93,7 @@ const catalogCourses = [
     price: "$34",
   },
   {
+    courseId: "design-engineering",
     title: "Design Engineering",
     instructor: "Ren Ishikawa-Flores",
     icon: PencilRuler,
@@ -94,6 +102,7 @@ const catalogCourses = [
     price: "$44",
   },
   {
+    courseId: "nlp-in-production",
     title: "NLP in Production",
     instructor: "Dr. Meera Johansson",
     icon: Robot,
