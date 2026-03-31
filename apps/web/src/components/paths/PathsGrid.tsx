@@ -1,7 +1,6 @@
 import {
   Code,
   Brain,
-  Palette,
   ChartLineUp,
   CloudArrowUp,
   TreeStructure,
@@ -14,90 +13,69 @@ const paths = [
   {
     title: "Full-Stack Engineer",
     description:
-      "From HTML fundamentals to production-grade full-stack applications. Build, test, secure, and deploy complete systems end to end.",
-    courseCount: 8,
-    duration: "320h",
+      "From programming fundamentals to web technologies and software engineering. Build, test, and deploy complete systems end to end.",
+    courseCount: 6,
+    duration: "216h",
     difficulty: "Beginner to Advanced",
     milestones: [
-      "HTML/CSS Foundations",
-      "JavaScript Core",
-      "React Patterns",
-      "Node.js APIs",
-      "Database Design",
-      "Auth & Security",
-      "Testing & CI",
-      "Production Deploy",
+      "CSC 1102 Introduction to Programming Language",
+      "CSC 1205 Object Oriented Programming 1",
+      "CSC 2108 Introduction to Database",
+      "CSC 2210 Object Oriented Programming 2",
+      "CSC 3112 Software Engineering",
+      "CSC 3215 Web Technologies",
     ],
     icon: Code,
   },
   {
     title: "ML Engineer",
     description:
-      "Applied machine learning from data wrangling to model deployment. Train, evaluate, and serve models that handle real production traffic.",
-    courseCount: 7,
-    duration: "280h",
+      "Applied mathematics, statistics, and artificial intelligence. Build the analytical foundation for machine learning engineering.",
+    courseCount: 5,
+    duration: "180h",
     difficulty: "Intermediate to Advanced",
     milestones: [
-      "Python for ML",
-      "Data Wrangling",
-      "Supervised Learning",
-      "Deep Learning",
-      "NLP Pipelines",
-      "MLOps & Monitoring",
-      "Production Inference",
+      "MAT 3103 Computational Statistics and Probability",
+      "CSC 2211 Algorithms",
+      "CSC 2106 Data Structure",
+      "MAT 3101 Numerical Methods for Science and Engineering",
+      "CSC 3217 Artificial Intelligence and Expert System",
     ],
     icon: Brain,
   },
   {
-    title: "Product Designer",
+    title: "Systems Architect",
     description:
-      "Design systems, user research, prototyping, and the bridge between design and code. Every module produces a portfolio-ready deliverable.",
+      "From digital circuits to operating systems and computer networks. Understand the full hardware-to-application stack.",
     courseCount: 6,
-    duration: "240h",
-    difficulty: "Beginner to Intermediate",
-    milestones: [
-      "Design Fundamentals",
-      "Figma Prototyping",
-      "Design Systems",
-      "UX Research",
-      "Interaction Design",
-      "Design Engineering",
-    ],
-    icon: Palette,
-  },
-  {
-    title: "Data Scientist",
-    description:
-      "Extract signal from noise. SQL, Python pipelines, visualization, statistical reasoning, and machine learning with messy real-world datasets.",
-    courseCount: 7,
-    duration: "260h",
+    duration: "192h",
     difficulty: "Beginner to Advanced",
     milestones: [
-      "SQL Foundations",
-      "Python for Data",
-      "Statistics & Probability",
-      "Data Visualization",
-      "Feature Engineering",
-      "Predictive Modeling",
-      "Capstone Analysis",
-    ],
-    icon: ChartLineUp,
-  },
-  {
-    title: "DevOps Engineer",
-    description:
-      "Containers, orchestration, CI/CD, cloud infrastructure, and monitoring. Automate everything between git push and production.",
-    courseCount: 5,
-    duration: "200h",
-    difficulty: "Intermediate to Advanced",
-    milestones: [
-      "Linux & Networking",
-      "Docker & Containers",
-      "Kubernetes Orchestration",
-      "CI/CD Pipelines",
-      "Cloud Architecture",
+      "EEE 2108 Introduction to Electrical Circuits",
+      "EEE 3101 Digital Logic and Circuits",
+      "COE 3102 Microprocessor and Embedded Systems",
+      "COE 3203 Computer Organization & Architecture",
+      "CSC 3214 Operating Systems",
+      "COE 3204 Computer Networks",
     ],
     icon: CloudArrowUp,
+  },
+  {
+    title: "CS Theorist",
+    description:
+      "Deep mathematical foundations — calculus, discrete math, algorithms, and theory of computation. The rigorous core of computer science.",
+    courseCount: 6,
+    duration: "216h",
+    difficulty: "Beginner to Advanced",
+    milestones: [
+      "MAT 1102 Differential Calculus and Coordinate Geometry",
+      "CSC 1204 Discrete Mathematics",
+      "MAT 2202 Matrices, Vectors and Fourier Analysis",
+      "CSC 2211 Algorithms",
+      "CSC 3113 Theory of Computation",
+      "CSC 4118 Computer Graphics",
+    ],
+    icon: ChartLineUp,
   },
 ];
 
@@ -107,8 +85,8 @@ export function PathsGrid() {
       <div className="mx-auto max-w-7xl px-4">
         <SectionHeader
           badge={{ icon: TreeStructure, label: "Learning paths" }}
-          title="Five paths, one destination"
-          subtitle="Each path is a curated sequence of courses with clear milestones. Pick the one that matches your goals."
+          title="Four paths, one destination"
+          subtitle="Each path is a curated sequence of AIUB CSE courses with clear milestones. Pick the one that matches your goals."
           dark
         />
 
