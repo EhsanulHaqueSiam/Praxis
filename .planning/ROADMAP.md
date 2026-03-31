@@ -8,10 +8,10 @@
 ### Phase 1: AIUB Course Data & Catalog
 **Goal**: Replace placeholder course data with real AIUB CSE course catalog
 **Requirements**: R1.1, R2.3
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 
 Plans:
-- [ ] 01-01-PLAN.md — Create shared course data module (Course interface + 51 AIUB records + barrel export)
+- [x] 01-01-PLAN.md — Create shared course data module (Course interface + 51 AIUB records + barrel export)
 - [ ] 01-02-PLAN.md — Migrate web marketing components + category taxonomy + learning paths + JSON-LD
 - [ ] 01-03-PLAN.md — Migrate dashboard app components + replace all "217" references
 
