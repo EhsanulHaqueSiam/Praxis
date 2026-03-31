@@ -1,6 +1,20 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: unknown
+last_updated: "2026-03-31T12:25:24.901Z"
+progress:
+  total_phases: 7
+  completed_phases: 1
+  total_plans: 3
+  completed_plans: 3
+---
+
 # Praxis — Project State
 
 ## Current
+
 - **Milestone**: 1 (Production-Ready Shell)
 - **Phase**: 1 — AIUB Course Data & Catalog
 - **Plan**: 01-03 complete — dashboard course consumers migrated, all 217 counts replaced
@@ -8,6 +22,7 @@
 - **Resume**: Next phase TBD
 
 ## History
+
 | Date | Action | Notes |
 |------|--------|-------|
 | 2026-03-31 | Plan 01-03 complete | Dashboard app migrated: courses.tsx, dashboard.tsx, courses.$courseId.tsx all use @lumina/ui; all 217 course count literals replaced with AIUB_COURSE_COUNT (51) |
@@ -18,6 +33,7 @@
 | 2026-03-31 | Project initialized | PROJECT.md, REQUIREMENTS.md, ROADMAP.md created |
 
 ## Key Decisions
+
 - **Audience**: AIUB CSE students (Bangladesh)
 - **Monetization**: SSLCommerz (future), no payments in M1
 - **Backend**: None yet — localStorage mock auth
@@ -32,6 +48,7 @@
 - **Course count**: AIUB_COURSE_COUNT (51) is the single source of truth — zero hardcoded 217 literals in source files
 
 ## Constant Rules
+
 1. `/frontend-design` for ALL design work
 2. `/agent-browser` for ALL verification (screenshots)
 3. Framer marketplace components adapted for the site
