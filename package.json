@@ -1,6 +1,7 @@
 {
   "name": "lumina-edtech",
   "private": true,
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "dev": "pnpm --filter @lumina/web dev & pnpm --filter @lumina/app dev",
     "dev:web": "pnpm --filter @lumina/web dev",
@@ -21,5 +22,8 @@
       "@parcel/watcher",
       "esbuild"
     ]
+  },
+  "devDependencies": {
+    "turbo": "^2.9.1"
   }
 }
