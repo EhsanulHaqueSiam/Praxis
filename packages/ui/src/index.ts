@@ -15,3 +15,4 @@ export { Accordion, type AccordionItem } from "./components/accordion";
 export { Tabs } from "./components/tabs";
 export { cn } from "./lib/utils";
 export { AuthProvider, useAuth } from "./auth";
+export { courses, type Course, type CourseCategory, AIUB_COURSE_COUNT } from "./data/courses";
