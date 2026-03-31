@@ -2,12 +2,14 @@
 
 ## Current
 - **Milestone**: 1 (Production-Ready Shell)
-- **Phase**: Not started — run `/gsd:plan-phase 1` to begin
-- **Status**: Project initialized, codebase mapped, roadmap created
+- **Phase**: 1 — AIUB Course Data & Catalog
+- **Status**: Context gathered (assumptions mode), ready for planning
+- **Resume**: `.planning/phases/01-aiub-course-data-catalog/01-CONTEXT.md`
 
 ## History
 | Date | Action | Notes |
 |------|--------|-------|
+| 2026-03-31 | Phase 1 context gathered | Assumptions mode, 10 decisions captured |
 | 2026-03-31 | Codebase mapped | 7 docs, 1,601 lines in .planning/codebase/ |
 | 2026-03-31 | Project initialized | PROJECT.md, REQUIREMENTS.md, ROADMAP.md created |
 
